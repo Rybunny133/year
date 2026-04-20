@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carta 3D 💖</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle at top, #ffb3c6, #ff4d6d);
+    overflow-x: hidden;
+}
+
+/* cenário */
+.scene {
+    width: 100vw;
+    height: 100vh;
+    perspective: 1500px;
+}
+
+/* carta */
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1.2s ease;
+    cursor: pointer;
+}
+
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+/* frente mais bonita */
+.front {
+    background: linear-gradient(135deg, #ff2e63, #ff8fab);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 34px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* verso mais “romântico” */
+.back {
+    background: linear-gradient(180deg, #ffffff, #fff0f5);
+    transform: rotateY(180deg);
+    padding: 40px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+/* efeito abrir */
+.card.open {
+    transform: rotateY(180deg);
+}
+
+/* título */
+h1 {
+    text-align: center;
+    font-size: 30px;
+    color: #ff2e63;
+}
+
+/* texto */
+.texto {
+    font-size: 16px;
+    line-height: 1.7;
+    text-align: justify;
+    color: #333;
+}
+
+/* mídia */
+.media {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    gap: 12px;
+    align-items: center;
+}
+
+.media img {
+    width: 28%;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* vídeo agora mais bonito */
+.media video {
+    width: 42%;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    background: black;
+}
+
+/* assinatura */
+.ass {
+    text-align: right;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #ff2e63;
+}
+
+/* lista amor */
+.love-list {
+    margin-top: 40px;
+    max-height: 250px;
+    overflow-y: auto;
+    padding: 15px;
+    background: #fff0f3;
+    border-radius: 15px;
+    box-shadow: inset 0 0 10px rgba(255, 77, 109, 0.2);
+}
+
+/* coração gigante */
+.heart {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 10px;
+    line-height: 10px;
+    color: #ff2e63;
+    white-space: pre;
+}
+</style>
+</head>
+
+<body>
+
+<div class="scene">
+    <div class="card" id="card">
+
+        <div class="front">
+            💌 Toque na carta
+        </div>
+
+        <div class="back">
+
+            <h1>Feliz 1 ano e 4 meses</h1>
+
+            <div class="texto">
+                <p>feliz um ano e 4 meses meu xuxu kkkkkkkkkkk, em vi direito, mas aconteceu bastante coisa nele, ate demais se e que me entende kkkkkkkkkkkk.</p>
+
+                <p>ja escrevi tantas cartas que nem sei mais oq eu escrevo amor kkkkkkkkkkk, mas esse mes foi um 50 50 pra gente, ocorreu coisas e coisas, mas nada que nosso relacionamento nao supere muahahahhhahaahahahahhahaa.</p>
+
+                <p>To percebendo que o tempo ta passando extremamente rapido, isso da medo mas d outro ponto de vista, e confortante, nao sei explicar kkkkkkk, mas nao quero espear mais esperar pra morar com voce.</p>
+
+                <p>obrigado por tudo meu amor, feliz um no e 4 meses, e eu te amo muito muito muito muito muitomuito muito muitomuito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito</p>
+            </div>
+
+            <div class="media">
+                <img src="ryhana1.jpeg">
+
+                <video id="video" playsinline>
+                    <source src="video.mp4" type="video/mp4">
+                </video>
+
+                <img src="ryhana2.jpeg">
+            </div>
+
+            <div class="ass">
+                João para Ryh
+            </div>
+
+            <div class="love-list" id="loveList"></div>
+
+            <div class="heart" id="heart"></div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+const card = document.getElementById("card");
+const video = document.getElementById("video");
+
+/* abre carta + tenta tocar vídeo com som */
+card.addEventListener("click", () => {
+    card.classList.add("open");
+
+    video.volume = 1.0;
+
+    const playPromise = video.play();
+
+    if (playPromise !== undefined) {
+        playPromise.catch(() => {
+            console.log("Autoplay bloqueado — clique necessário");
+        });
+    }
+});
+
+/* 1000 eu te amo */
+const loveList = document.getElementById("loveList");
+
+for (let i = 1; i <= 1000; i++) {
+    const div = document.createElement("div");
+    div.textContent = i + " - eu te amo ❤️";
+    loveList.appendChild(div);
+}
+
+/* coração gigante */
+const heart = document.getElementById("heart");
+
+const pattern = [
+"  ❤️❤️❤️     ❤️❤️❤️  ",
+"❤️❤️❤️❤️❤️ ❤️❤️❤️❤️❤️",
+"❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️",
+" ❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️ ",
+"  ❤️❤️❤️❤️❤️❤️❤️❤️❤️  ",
+"   ❤️❤️❤️❤️❤️❤️❤️❤️   ",
+"    ❤️❤️❤️❤️❤️❤️❤️    ",
+"     ❤️❤️❤️❤️❤️     ",
+"      ❤️❤️❤️❤️      ",
+"       ❤️❤️❤️       ",
+"        ❤️❤️        ",
+"         ❤️         "
+];
+
+heart.innerText = pattern.join("\n");
+</script>
+
+</body>
+</html>
